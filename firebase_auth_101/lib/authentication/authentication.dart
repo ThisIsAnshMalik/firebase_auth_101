@@ -35,4 +35,12 @@ class Authentication {
       Utils().toastMessage(error.toString());
     });
   }
+
+  logout() {
+    _auth.signOut().then((value) {
+      Utils().toastMessage("Loging out..");
+    }).onError((error, stackTrace) {
+      Utils().toastMessage(error.toString());
+    });
+  }
 }
