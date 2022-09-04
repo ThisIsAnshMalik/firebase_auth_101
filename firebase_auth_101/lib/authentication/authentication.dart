@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_101/provider/Provider.dart';
 import 'package:firebase_auth_101/utils/flutter_toast.dart';
+import 'package:firebase_auth_101/view/auth/loginScreen.dart';
+import 'package:firebase_auth_101/view/homescreen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Authentication {
@@ -30,15 +33,23 @@ class Authentication {
         .then((value) {
       loadingProvider.setLoading(false);
       Utils().toastMessage("Login Successfuly");
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: ((context) {
+        return const HomeScreen();
+      })));
     }).onError((error, stackTrace) {
       loadingProvider.setLoading(false);
       Utils().toastMessage(error.toString());
     });
   }
 
-  logout() {
+  logout(BuildContext context) {
     _auth.signOut().then((value) {
-      Utils().toastMessage("Loging out..");
+      Utils().toastMessage("Loged out");
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: ((context) {
+        return const LoginScreen();
+      })));
     }).onError((error, stackTrace) {
       Utils().toastMessage(error.toString());
     });

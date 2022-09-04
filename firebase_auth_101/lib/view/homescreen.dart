@@ -1,3 +1,4 @@
+import 'package:firebase_auth_101/authentication/authentication.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -8,6 +9,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Authentication authentication = Authentication();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +17,10 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text("Home Screen"),
         actions: [
           IconButton(
-              onPressed: (() {}), icon: const Icon(Icons.logout_outlined)),
+              onPressed: (() {
+                authentication.logout(context);
+              }),
+              icon: const Icon(Icons.logout_outlined)),
           const SizedBox(
             width: 10,
           )
