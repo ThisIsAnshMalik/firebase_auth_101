@@ -29,7 +29,7 @@ class Authentication {
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) {
       loadingProvider.setLoading(false);
-      Utils().toastMessage("Login Successfuly :- ${value.toString()}");
+      Utils().toastMessage("Login Successfuly");
     }).onError((error, stackTrace) {
       loadingProvider.setLoading(false);
       Utils().toastMessage(error.toString());

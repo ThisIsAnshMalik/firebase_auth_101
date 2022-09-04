@@ -93,28 +93,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       }
                     }),
                     child: Container(
-                      height: 60,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey.shade700),
-                      child: Consumer<LoadingProvider>(
-                        builder: ((context, value, child) {
-                          return Center(
-                            child: value.isloading
-                                ? const CircularProgressIndicator(
-                                    color: Colors.white,
-                                  )
-                                : const Text(
-                                    "Sign Up",
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                          );
-                        }),
-                      ),
-                    ),
+                        height: 60,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey.shade700),
+                        child: Center(
+                          child: value.isloading
+                              ? const CircularProgressIndicator(
+                                  color: Colors.white,
+                                )
+                              : const Text(
+                                  "Sign Up",
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                        )),
                   );
                 }),
               ),
