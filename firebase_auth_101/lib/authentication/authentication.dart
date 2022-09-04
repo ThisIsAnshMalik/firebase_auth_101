@@ -14,10 +14,25 @@ class Authentication {
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((value) {
       loadingProvider.setLoading(false);
-      Utils().toastMessage("User Created Succesfully");
+      Utils().toastMessage("User Created Succesfully :- ${value.toString()}");
     }).onError((error, stackTrace) {
       loadingProvider.setLoading(false);
       Utils().toastMessage("user not created :- ${error.toString()}");
+    });
+  }
+
+  login(String email, String password, BuildContext context) {
+    LoadingProvider loadingProvider =
+        Provider.of<LoadingProvider>(context, listen: false);
+
+    _auth
+        .signInWithEmailAndPassword(email: email, password: password)
+        .then((value) {
+      loadingProvider.setLoading(false);
+      Utils().toastMessage("Login Successfuly :- ${value.toString()}");
+    }).onError((error, stackTrace) {
+      loadingProvider.setLoading(false);
+      Utils().toastMessage(error.toString());
     });
   }
 }
