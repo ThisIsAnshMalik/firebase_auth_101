@@ -1,6 +1,8 @@
+import 'package:firebase_auth_101/provider/Provider.dart';
 import 'package:firebase_auth_101/view/splashScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,14 +15,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData.dark(),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: ((context) => LoadingProvider()))
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData.dark(),
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
+        ),
+        home: const SplashScreen(),
       ),
-      home: const SplashScreen(),
     );
   }
 }

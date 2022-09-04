@@ -1,5 +1,9 @@
+import 'package:firebase_auth_101/authentication/authentication.dart';
+import 'package:firebase_auth_101/provider/Provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth_101/view/auth/loginScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -9,6 +13,8 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
@@ -21,6 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Authentication authentication = Authentication();
     return Form(
       key: formkey,
       child: Scaffold(
@@ -75,24 +82,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             Padding(
               padding: const EdgeInsets.all(25.0),
-              child: InkWell(
-                onTap: (() {
-                  if (formkey.currentState!.validate()) {}
+              child: Consumer<LoadingProvider>(
+                builder: ((context, value, child) {
+                  return InkWell(
+                    onTap: (() {
+                      if (formkey.currentState!.validate()) {
+                        value.setLoading(true);
+                        authentication.signUp(_emailController.text,
+                            _passwordController.text, context);
+                      }
+                    }),
+                    child: Container(
+                        height: 60,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey.shade700),
+                        child: Center(
+                          child: value.isloading
+                              ? const CircularProgressIndicator(
+                                  color: Colors.white,
+                                )
+                              : const Text(
+                                  "Sign Up",
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                        )),
+                  );
                 }),
-                child: Container(
-                  height: 60,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey.shade700),
-                  child: const Center(
-                    child: Text(
-                      "Sign Up",
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ),
               ),
             ),
             Row(
