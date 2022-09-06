@@ -1,5 +1,6 @@
 import 'package:firebase_auth_101/authentication/authentication.dart';
 import 'package:firebase_auth_101/provider/Provider.dart';
+import 'package:firebase_auth_101/view/auth/mobile_login_screen.dart';
 import 'package:firebase_auth_101/view/auth/signupScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -129,7 +130,31 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ],
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(25.0),
+              child: InkWell(
+                onTap: (() {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: ((context) {
+                    return const MobileLogin();
+                  })));
+                }),
+                child: Container(
+                    height: 40,
+                    width: MediaQuery.of(context).size.width / 2,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey.shade700),
+                    child: const Center(
+                      child: Text(
+                        "Login With Mobile",
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w600),
+                      ),
+                    )),
+              ),
+            ),
           ],
         ),
       ),
