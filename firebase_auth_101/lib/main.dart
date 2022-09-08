@@ -1,4 +1,6 @@
 import 'package:firebase_auth_101/provider/Provider.dart';
+import 'package:firebase_auth_101/view/auth/loginScreen.dart';
+import 'package:firebase_auth_101/view/auth/mobile_login_screen.dart';
 import 'package:firebase_auth_101/view/splashScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
