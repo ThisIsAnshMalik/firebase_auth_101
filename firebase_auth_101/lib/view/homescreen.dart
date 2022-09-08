@@ -1,4 +1,5 @@
 import 'package:firebase_auth_101/authentication/authentication.dart';
+import 'package:firebase_auth_101/view/auth/add_post_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,6 +27,15 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 10,
           )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue,
+        onPressed: (() {
+          Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
+            return const AddPostScreen();
+          })));
+        }),
+        child: const Icon(Icons.add),
       ),
     );
   }
