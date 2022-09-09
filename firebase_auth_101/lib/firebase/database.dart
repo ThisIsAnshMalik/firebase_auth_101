@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 class DataBase {
-  final databaseRef = FirebaseDatabase.instance.ref("post");
+  DatabaseReference databaseRef = FirebaseDatabase.instance.ref("post");
   addpost(String title, BuildContext context) {
     LoadingProvider loadingProvider =
         Provider.of<LoadingProvider>(context, listen: false);

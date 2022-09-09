@@ -1,5 +1,7 @@
 import 'package:firebase_auth_101/firebase/authentication.dart';
 import 'package:firebase_auth_101/view/add_post_screen.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -8,6 +10,8 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
+DatabaseReference postRef = FirebaseDatabase.instance.ref("post");
 
 class _HomeScreenState extends State<HomeScreen> {
   Authentication authentication = Authentication();
@@ -36,6 +40,22 @@ class _HomeScreenState extends State<HomeScreen> {
           })));
         }),
         child: const Icon(Icons.add),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: FirebaseAnimatedList(
+                query: postRef,
+                defaultChild: Center(
+                  child: CircularProgressIndicator(color: Colors.white),
+                ),
+                itemBuilder: ((context, snapshot, animation, index) {
+                  return ListTile(
+                    title: Text(snapshot.child("title").value.toString()),
+                  );
+                })),
+          )
+        ],
       ),
     );
   }
