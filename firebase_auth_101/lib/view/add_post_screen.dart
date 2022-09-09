@@ -1,4 +1,6 @@
+import 'package:firebase_auth_101/firebase/database.dart';
 import 'package:firebase_auth_101/provider/Provider.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,8 +12,11 @@ class AddPostScreen extends StatefulWidget {
 }
 
 class _AddPostScreenState extends State<AddPostScreen> {
+  final titleController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    DataBase dataBase = DataBase();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add Post"),
@@ -24,6 +29,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
               height: MediaQuery.of(context).size.height * 0.1,
             ),
             TextFormField(
+              controller: titleController,
               maxLines: 4,
               maxLength: 50,
               decoration: const InputDecoration(
@@ -42,7 +48,12 @@ class _AddPostScreenState extends State<AddPostScreen> {
                   height: 60,
                   width: MediaQuery.of(context).size.width,
                   child: InkWell(
-                    onTap: (() {}),
+                    onTap: (() {
+                      dataBase.addpost(
+                        titleController.text.toString(),
+                        context,
+                      );
+                    }),
                     child: value.isloading
                         ? const Center(
                             child: CircularProgressIndicator(
@@ -51,8 +62,9 @@ class _AddPostScreenState extends State<AddPostScreen> {
                           )
                         : const Center(
                             child: Text(
-                            "Add Data",
-                            style: TextStyle(fontSize: 20),
+                            "Add",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w700),
                           )),
                   ),
                 );

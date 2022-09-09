@@ -1,4 +1,4 @@
-import 'package:firebase_auth_101/authentication/authentication.dart';
+import 'package:firebase_auth_101/firebase/authentication.dart';
 import 'package:firebase_auth_101/provider/Provider.dart';
 import 'package:firebase_auth_101/view/auth/mobile_login_screen.dart';
 import 'package:firebase_auth_101/view/auth/signupScreen.dart';
