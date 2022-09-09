@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "45336319871",
+    "firebase_url": "https://fir-auth-101-c0189-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "fir-auth-101-c0189",
     "storage_bucket": "fir-auth-101-c0189.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "45336319871-n1rbtip3fggpmg7pl1520juj0nbgvoe5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ansh_malik.firebase_auth_101",
+            "certificate_hash": "299d5b6c21db4e42483a222f950faf4f36d8dfa9"
+          }
+        },
         {
           "client_id": "45336319871-v5dcf0vg5flnusbges5q8mph7dohkijn.apps.googleusercontent.com",
           "client_type": 3

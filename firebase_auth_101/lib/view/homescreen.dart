@@ -1,4 +1,4 @@
-import 'package:firebase_auth_101/authentication/authentication.dart';
+import 'package:firebase_auth_101/firebase/authentication.dart';
 import 'package:firebase_auth_101/view/add_post_screen.dart';
 import 'package:flutter/material.dart';
 
