@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               title: Text(list[index]["title"]),
                               subtitle: Text(list[index]["id"]),
                               trailing: PopupMenuButton(
-                                icon: Icon(Icons.more_vert),
+                                icon: const Icon(Icons.more_vert),
                                 itemBuilder: ((context) => [
                                       const PopupMenuItem(
                                         child: ListTile(
@@ -84,10 +84,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                           title: Text("Update"),
                                         ),
                                       ),
-                                      const PopupMenuItem(
+                                      PopupMenuItem(
                                         child: ListTile(
-                                          leading: Icon(Icons.delete),
-                                          title: Text("Delete"),
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                            postRef
+                                                .child(list[index]["id"]
+                                                    .toString())
+                                                .remove();
+                                          },
+                                          leading: const Icon(Icons.delete),
+                                          title: const Text("Delete"),
                                         ),
                                       )
                                     ]),
@@ -100,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               title: Text(list[index]["title"]),
                               subtitle: Text(list[index]["id"]),
                               trailing: PopupMenuButton(
-                                icon: Icon(Icons.more_vert),
+                                icon: const Icon(Icons.more_vert),
                                 itemBuilder: ((context) => [
                                       const PopupMenuItem(
                                         child: ListTile(
@@ -108,10 +115,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                           title: Text("Update"),
                                         ),
                                       ),
-                                      const PopupMenuItem(
+                                      PopupMenuItem(
                                         child: ListTile(
-                                          leading: Icon(Icons.delete),
-                                          title: Text("Delete"),
+                                          leading: const Icon(Icons.delete),
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                            postRef
+                                                .child(list[index]["id"]
+                                                    .toString())
+                                                .remove();
+                                          },
+                                          title: const Text("Delete"),
                                         ),
                                       )
                                     ]),
