@@ -53,6 +53,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                         titleController.text.toString(),
                         context,
                       );
+                      Navigator.pop(context);
                     }),
                     child: value.isloading
                         ? const Center(

@@ -1,4 +1,5 @@
 import 'package:firebase_auth_101/firebase/authentication.dart';
+import 'package:firebase_auth_101/utils/flutter_toast.dart';
 import 'package:firebase_auth_101/view/add_post_screen.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ DatabaseReference postRef = FirebaseDatabase.instance.ref("post");
 
 class _HomeScreenState extends State<HomeScreen> {
   TextEditingController searchController = TextEditingController();
+  TextEditingController updateController = TextEditingController();
   Authentication authentication = Authentication();
   @override
   Widget build(BuildContext context) {
@@ -31,15 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 10,
           )
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue,
-        onPressed: (() {
-          Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
-            return const AddPostScreen();
-          })));
-        }),
-        child: const Icon(Icons.add),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -78,10 +71,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               trailing: PopupMenuButton(
                                 icon: const Icon(Icons.more_vert),
                                 itemBuilder: ((context) => [
-                                      const PopupMenuItem(
+                                      PopupMenuItem(
                                         child: ListTile(
-                                          leading: Icon(Icons.edit),
-                                          title: Text("Update"),
+                                          onTap: (() {
+                                            Navigator.pop(context);
+                                            showMyDialog(
+                                                titleName, list[index]["id"]);
+                                          }),
+                                          leading: const Icon(Icons.edit),
+                                          title: const Text("Edit"),
                                         ),
                                       ),
                                       PopupMenuItem(
@@ -109,10 +107,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               trailing: PopupMenuButton(
                                 icon: const Icon(Icons.more_vert),
                                 itemBuilder: ((context) => [
-                                      const PopupMenuItem(
+                                      PopupMenuItem(
                                         child: ListTile(
-                                          leading: Icon(Icons.edit),
-                                          title: Text("Update"),
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                            showMyDialog(
+                                                titleName, list[index]["id"]);
+                                          },
+                                          leading: const Icon(Icons.edit),
+                                          title: const Text("Edit"),
                                         ),
                                       ),
                                       PopupMenuItem(
@@ -138,10 +141,58 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                 }),
               ),
-            )
+            ),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue,
+        onPressed: (() {
+          Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
+            return const AddPostScreen();
+          })));
+        }),
+        child: const Icon(Icons.add),
+      ),
     );
+  }
+
+  Future<void> showMyDialog(String title, String id) async {
+    updateController.text = title;
+    return showDialog(
+        context: context,
+        builder: ((BuildContext context) {
+          return AlertDialog(
+            title: const Text("Edit"),
+            content: Container(
+              child: TextField(
+                controller: updateController,
+                decoration: const InputDecoration(hintText: "edit"),
+              ),
+            ),
+            actions: [
+              TextButton(
+                  onPressed: (() {
+                    Navigator.pop(context);
+                    updateController.clear();
+                  }),
+                  child: const Text("Cancil")),
+              TextButton(
+                  onPressed: (() {
+                    postRef.child(id).update({
+                      "title": updateController.text.toString()
+                    }).then((value) {
+                      Utils().toastMessage("Post Updated Successfuly");
+                    }).onError((error, stackTrace) {
+                      Utils().toastMessage(
+                          "Post Update Failed :- ${error.toString()}");
+                    });
+                    Navigator.pop(context);
+                    updateController.clear();
+                  }),
+                  child: const Text("Update"))
+            ],
+          );
+        }));
   }
 }
