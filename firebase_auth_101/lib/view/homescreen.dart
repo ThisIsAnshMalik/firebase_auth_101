@@ -74,12 +74,48 @@ class _HomeScreenState extends State<HomeScreen> {
                           if (searchController.text.isEmpty) {
                             return ListTile(
                               title: Text(list[index]["title"]),
+                              subtitle: Text(list[index]["id"]),
+                              trailing: PopupMenuButton(
+                                icon: Icon(Icons.more_vert),
+                                itemBuilder: ((context) => [
+                                      const PopupMenuItem(
+                                        child: ListTile(
+                                          leading: Icon(Icons.edit),
+                                          title: Text("Update"),
+                                        ),
+                                      ),
+                                      const PopupMenuItem(
+                                        child: ListTile(
+                                          leading: Icon(Icons.delete),
+                                          title: Text("Delete"),
+                                        ),
+                                      )
+                                    ]),
+                              ),
                             );
                           } else if (titleName
                               .toLowerCase()
                               .contains(searchController.text.toLowerCase())) {
                             return ListTile(
                               title: Text(list[index]["title"]),
+                              subtitle: Text(list[index]["id"]),
+                              trailing: PopupMenuButton(
+                                icon: Icon(Icons.more_vert),
+                                itemBuilder: ((context) => [
+                                      const PopupMenuItem(
+                                        child: ListTile(
+                                          leading: Icon(Icons.edit),
+                                          title: Text("Update"),
+                                        ),
+                                      ),
+                                      const PopupMenuItem(
+                                        child: ListTile(
+                                          leading: Icon(Icons.delete),
+                                          title: Text("Delete"),
+                                        ),
+                                      )
+                                    ]),
+                              ),
                             );
                           } else {
                             return Container();

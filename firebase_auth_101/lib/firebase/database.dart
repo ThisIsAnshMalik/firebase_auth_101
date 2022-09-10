@@ -13,7 +13,9 @@ class DataBase {
     LoadingProvider loadingProvider =
         Provider.of<LoadingProvider>(context, listen: false);
     loadingProvider.setLoading(true);
-    postRef.child(DateTime.now().microsecond.toString()).set({
+    String id = DateTime.now().millisecondsSinceEpoch.toString();
+    postRef.child(id).set({
+      "id": id,
       "title": title,
     }).then((value) {
       Utils().toastMessage("Post added Successfuly");
