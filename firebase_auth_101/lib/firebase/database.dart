@@ -6,12 +6,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 class DataBase {
-  DatabaseReference databaseRef = FirebaseDatabase.instance.ref("post");
+  DatabaseReference postRef = FirebaseDatabase.instance.ref("post");
+
+// ----------------------------------------------------------------------------//
   addpost(String title, BuildContext context) {
     LoadingProvider loadingProvider =
         Provider.of<LoadingProvider>(context, listen: false);
     loadingProvider.setLoading(true);
-    databaseRef.child(DateTime.now().microsecond.toString()).set({
+    postRef.child(DateTime.now().microsecond.toString()).set({
       "title": title,
     }).then((value) {
       Utils().toastMessage("Post added Successfuly");
@@ -21,4 +23,6 @@ class DataBase {
       loadingProvider.setLoading(false);
     });
   }
+
+// ----------------------------------------------------------------------------//
 }

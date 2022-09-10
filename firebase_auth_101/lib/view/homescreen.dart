@@ -1,7 +1,6 @@
 import 'package:firebase_auth_101/firebase/authentication.dart';
 import 'package:firebase_auth_101/view/add_post_screen.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -44,16 +43,29 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           Expanded(
-            child: FirebaseAnimatedList(
-                query: postRef,
-                defaultChild: Center(
-                  child: CircularProgressIndicator(color: Colors.white),
-                ),
-                itemBuilder: ((context, snapshot, animation, index) {
-                  return ListTile(
-                    title: Text(snapshot.child("title").value.toString()),
+            child: StreamBuilder(
+              stream: postRef.onValue,
+              builder: ((context, AsyncSnapshot<DatabaseEvent> snapshot) {
+                Map<dynamic, dynamic> map =
+                    snapshot.data!.snapshot.value as dynamic;
+                List<dynamic> list = [];
+                list.clear();
+                list = map.values.toList();
+                if (!snapshot.hasData) {
+                  return const Center(
+                    child: CircularProgressIndicator(color: Colors.white),
                   );
-                })),
+                } else {
+                  return ListView.builder(
+                      itemCount: snapshot.data!.snapshot.children.length,
+                      itemBuilder: ((context, index) {
+                        return ListTile(
+                          title: Text(list[index]["title"]),
+                        );
+                      }));
+                }
+              }),
+            ),
           )
         ],
       ),
