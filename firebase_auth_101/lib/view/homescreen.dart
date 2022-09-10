@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 DatabaseReference postRef = FirebaseDatabase.instance.ref("post");
 
 class _HomeScreenState extends State<HomeScreen> {
+  TextEditingController searchController = TextEditingController();
   Authentication authentication = Authentication();
   @override
   Widget build(BuildContext context) {
@@ -40,34 +41,56 @@ class _HomeScreenState extends State<HomeScreen> {
         }),
         child: const Icon(Icons.add),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: StreamBuilder(
-              stream: postRef.onValue,
-              builder: ((context, AsyncSnapshot<DatabaseEvent> snapshot) {
-                Map<dynamic, dynamic> map =
-                    snapshot.data!.snapshot.value as dynamic;
-                List<dynamic> list = [];
-                list.clear();
-                list = map.values.toList();
-                if (!snapshot.hasData) {
-                  return const Center(
-                    child: CircularProgressIndicator(color: Colors.white),
-                  );
-                } else {
-                  return ListView.builder(
-                      itemCount: snapshot.data!.snapshot.children.length,
-                      itemBuilder: ((context, index) {
-                        return ListTile(
-                          title: Text(list[index]["title"]),
-                        );
-                      }));
-                }
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            TextField(
+              onChanged: ((value) {
+                setState(() {});
               }),
+              controller: searchController,
+              decoration: const InputDecoration(
+                  hintText: "search", border: OutlineInputBorder()),
             ),
-          )
-        ],
+            Expanded(
+              child: StreamBuilder(
+                stream: postRef.onValue,
+                builder: ((context, AsyncSnapshot<DatabaseEvent> snapshot) {
+                  Map<dynamic, dynamic> map =
+                      snapshot.data!.snapshot.value as dynamic;
+                  List<dynamic> list = [];
+                  list.clear();
+                  list = map.values.toList();
+                  if (!snapshot.hasData) {
+                    return const Center(
+                      child: CircularProgressIndicator(color: Colors.white),
+                    );
+                  } else {
+                    return ListView.builder(
+                        itemCount: snapshot.data!.snapshot.children.length,
+                        itemBuilder: ((context, index) {
+                          String titleName = list[index]["title"].toString();
+                          if (searchController.text.isEmpty) {
+                            return ListTile(
+                              title: Text(list[index]["title"]),
+                            );
+                          } else if (titleName
+                              .toLowerCase()
+                              .contains(searchController.text.toLowerCase())) {
+                            return ListTile(
+                              title: Text(list[index]["title"]),
+                            );
+                          } else {
+                            return Container();
+                          }
+                        }));
+                  }
+                }),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
