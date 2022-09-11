@@ -3,7 +3,7 @@ import 'package:firebase_auth_101/provider/Provider.dart';
 import 'package:firebase_auth_101/utils/flutter_toast.dart';
 import 'package:firebase_auth_101/view/auth/loginScreen.dart';
 import 'package:firebase_auth_101/view/auth/verify_no_screen.dart';
-import 'package:firebase_auth_101/view/homescreen.dart';
+import 'package:firebase_auth_101/view/firebase_database_screens/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
