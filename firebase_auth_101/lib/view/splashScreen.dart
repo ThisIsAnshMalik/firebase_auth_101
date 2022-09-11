@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_101/view/auth/loginScreen.dart';
 import 'package:firebase_auth_101/view/firebase_database_screens/homescreen.dart';
+import 'package:firebase_auth_101/view/firestore_database_screen/homepage2.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -29,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Timer(const Duration(seconds: 3), (() {
         Navigator.of(context)
             .pushReplacement(MaterialPageRoute(builder: ((context) {
-          return const HomeScreen();
+          return const HomePage2();
         })));
       }));
     }
