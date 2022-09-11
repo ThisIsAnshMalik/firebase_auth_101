@@ -1,6 +1,6 @@
 import 'package:firebase_auth_101/firebase/authentication.dart';
 import 'package:firebase_auth_101/utils/flutter_toast.dart';
-import 'package:firebase_auth_101/view/add_post_screen.dart';
+import 'package:firebase_auth_101/view/firebase_database_screens/add_post_screen.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
