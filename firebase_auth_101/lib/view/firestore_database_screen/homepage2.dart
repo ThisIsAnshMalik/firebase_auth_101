@@ -54,9 +54,11 @@ class _HomePage2State extends State<HomePage2> {
                     );
                   } else if (snapshot.connectionState ==
                       ConnectionState.waiting) {
-                    return const Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.white,
+                    return const Expanded(
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
                       ),
                     );
                   } else {
@@ -78,6 +80,7 @@ class _HomePage2State extends State<HomePage2> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        key: const Key("homepage2_key"),
         backgroundColor: Colors.blue,
         onPressed: (() {
           Navigator.of(context).push(MaterialPageRoute(builder: ((context) {

@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb66e0c0-cb84-4333-8940-e4e4ef1c2972" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/firebase_auth_101/android/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/firebase_auth_101/android/app/google-services.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firebase_auth_101/lib/view/add_post_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/firebase_auth_101/lib/view/add_post_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebase_auth_101/lib/firebase/authentication.dart" beforeDir="false" afterPath="$PROJECT_DIR$/firebase_auth_101/lib/firebase/authentication.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebase_auth_101/lib/view/auth/loginScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/firebase_auth_101/lib/view/auth/loginScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebase_auth_101/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/firebase_auth_101/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebase_auth_101/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/firebase_auth_101/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

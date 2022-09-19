@@ -40,6 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextFormField(
+                key: const Key("login_email_key"),
                 controller: _emailController,
                 decoration: const InputDecoration(
                     labelText: "email",
@@ -59,6 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextFormField(
+                key: const Key("login_password_key"),
                 controller: _passwordController,
                 decoration: const InputDecoration(
                     labelText: "password",
@@ -80,6 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 return Padding(
                   padding: const EdgeInsets.all(25.0),
                   child: InkWell(
+                    key: const Key("login_button_key"),
                     onTap: (() {
                       if (formkey.currentState!.validate()) {
                         value.setLoading(true);

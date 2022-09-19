@@ -4,6 +4,7 @@ import 'package:firebase_auth_101/utils/flutter_toast.dart';
 import 'package:firebase_auth_101/view/auth/loginScreen.dart';
 import 'package:firebase_auth_101/view/auth/verify_no_screen.dart';
 import 'package:firebase_auth_101/view/firebase_database_screens/homescreen.dart';
+import 'package:firebase_auth_101/view/firestore_database_screen/homepage2.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +41,7 @@ class Authentication {
       Utils().toastMessage("Login Successfuly");
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: ((context) {
-        return const HomeScreen();
+        return const HomePage2();
       })));
     }).onError((error, stackTrace) {
       loadingProvider.setLoading(false);
